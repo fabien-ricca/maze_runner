@@ -14,7 +14,7 @@ public class Maze {
             }
         }
 
-        // On ouvre le centre de chaque cellules
+        // On ouvre le centre de chaque cellule
         for (int i = 0; i < this.rows; i += 3) {
             for (int j = 0; j < this.cols; j += 3) {
                 this.lab[i + 1][j + 1] = ".";
