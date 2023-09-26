@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 public class Maze {
     private int rows, cols, enter;
@@ -16,10 +16,11 @@ public class Maze {
         init();
 
 
-//        while(!isValidMaze()){
-//            generator(1, this.enter);
-//        }
+        while(this.numbers.size() > 1){
+            generator();
+        }
     }
+
 
     public void init(){
         // On rempli le labyrinthe de murs
@@ -43,6 +44,7 @@ public class Maze {
     }
 
 
+
     // Méthode pour créer une entrée et une sortie
     public String[][] startEndPoints(){
         // On crée un tableau avec les entrées potentielles
@@ -63,54 +65,45 @@ public class Maze {
     }
 
 
+
     // Méthode de génération de labyrinthe
     public void generator(){
-            String dir = direction();
-
-//            if((dir == "nord") && (i-3>0)){
-//                if(this.lab[i-3][j].equals(" ")){
-//                    this.lab[i-1][j] = ".";
-//                    this.lab[i-2][j] = ".";
-//                    this.lab[i-3][j] = ".";
-//                }
-//                i-=3;
-//            }
-//
-//            if((dir == "sud") && (i+3<rows)){
-//                if(this.lab[i+3][j].equals(" ")){
-//                    this.lab[i+1][j] = ".";
-//                    this.lab[i+2][j] = ".";
-//                    this.lab[i+3][j] = ".";
-//                }
-//                i+=3;
-//            }
-//
-//            if((dir == "est") && (j+3<cols)){
-//                if(this.lab[i][j+3].equals(" ")){
-//                    this.lab[i][j+1] = ".";
-//                    this.lab[i][j+2] = ".";
-//                    this.lab[i][j+3] = ".";
-//                }
-//                j+=3;
-//            }
-//
-//            if((dir == "ouest") && (j-3>0)){
-//                if(this.lab[i][j-3].equals(" ")){
-//                    this.lab[i][j-1] = ".";
-//                    this.lab[i][j-2] = ".";
-//                    this.lab[i][j-3] = ".";
-//                }
-//                j-=3;
-//            }
-//
-
+        String dir = direction();
 
         int nb = ThreadLocalRandom.current().nextInt(0, this.numbers.size());
 
         for(int i=1; i<rows; i++){
             for(int j=1; j<cols; j++){
-                if(this.lab[i][j].equals(this.numbers.get(nb))){
-                    
+                if(this.lab[i][j].equals(this.numbers.get(nb))) {
+
+                    System.out.println("nb = " + this.numbers.get(nb));
+                    System.out.println("le = "+this.lab[i][j]);
+
+                    // Sud
+                    if (i+3<rows && this.lab[i+3][j] != this.numbers.get(nb)) {
+                        this.lab[i][j] = this.lab[i+3][j];
+                    }
+
+                    // Nord
+                    else if (i-3>0 && this.lab[i-3][j] != this.numbers.get(nb)) {
+                        this.lab[i][j] = this.lab[i-3][j];
+                    }
+
+                    // Est
+                    else if (j+3<cols && this.lab[i][j+3] != this.numbers.get(nb)) {
+                        this.lab[i][j] = this.lab[i][j+3];
+                    }
+
+                    // Ouest
+                    else if (j-3>0 && this.lab[i][j-3] != this.numbers.get(nb)) {
+                        this.lab[i][j] = this.lab[i][j-3];
+                    }
+
+                    this.numbers.remove(nb);
+                    printMaze();
+                    System.out.println();
+                    System.out.println();
+                    break;
                 }
             }
         }
@@ -118,6 +111,7 @@ public class Maze {
 
         generator();
     }
+
 
 
     // Méthode pour choisir une direction au hasard
@@ -128,35 +122,6 @@ public class Maze {
         return dir[i];
     }
 
-
-    // Méthode pour vérifier si la direction ciblée est ok
-    public boolean isValidCell(String dir, int i, int j){
-
-        switch(dir){
-            case "nord":
-                i-=3;
-                break;
-
-            case "sud":
-                i+=3;
-                break;
-
-            case "est":
-                j+=3;
-                break;
-
-            case "ouest":
-                j-=3;
-                break;
-        }
-
-        if(this.lab[i][j] == " "){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
 
 
     // Méthode pour vérifier si le labyrinthe est ok
