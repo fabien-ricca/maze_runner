@@ -16,9 +16,7 @@ public class Maze {
         init();
 
 
-        while(this.numbers.size() > 1){
-            generator();
-        }
+        generator();
     }
 
 
@@ -32,13 +30,10 @@ public class Maze {
 
         startEndPoints();
 
-        // On ouvre le centre de chaque cellules
-        int nb = 1;
+        // On ouvre le centre de chaque cellule
         for (int i = 0; i < this.rows; i += 3) {
             for (int j = 0; j < this.cols; j += 3) {
-                this.lab[i + 1][j + 1] = String.valueOf(nb);
-                numbers.add(String.valueOf(nb));
-                nb++;
+                this.lab[i + 1][j + 1] = " ";
             }
         }
     }
@@ -56,10 +51,10 @@ public class Maze {
 
         int ent = ThreadLocalRandom.current().nextInt(0, enters.length-1);
         this.enter = enters[ent];
-        this.lab[0][this.enter] = ".";
+        this.lab[0][this.enter] = "•";
 
         int exi = ThreadLocalRandom.current().nextInt(0, enters.length-1);
-        this.lab[this.lab.length-1][enters[exi]] = ".";
+        this.lab[this.lab.length-1][enters[exi]] = "•";
 
         return this.lab;
     }
@@ -69,45 +64,79 @@ public class Maze {
     // Méthode de génération de labyrinthe
     public void generator(){
         String dir = direction();
+//
+//        for(int i=1; i<rows; i++){
+//            for(int j=1; j<cols; j++){
+//                if(this.lab[i][j].equals(this.numbers.get(nb))) {
+//
+//                    System.out.println("nb = " + this.numbers.get(nb));
+//                    System.out.println("le = "+this.lab[i][j]);
+//
+//                    // Sud
+//                    if (i+3<rows && this.lab[i+3][j] != this.numbers.get(nb)) {
+//                        this.lab[i][j] = this.lab[i+3][j];
+//                    }
+//
+//                    // Nord
+//                    else if (i-3>0 && this.lab[i-3][j] != this.numbers.get(nb)) {
+//                        this.lab[i][j] = this.lab[i-3][j];
+//                    }
+//
+//                    // Est
+//                    else if (j+3<cols && this.lab[i][j+3] != this.numbers.get(nb)) {
+//                        this.lab[i][j] = this.lab[i][j+3];
+//                    }
+//
+//                    // Ouest
+//                    else if (j-3>0 && this.lab[i][j-3] != this.numbers.get(nb)) {
+//                        this.lab[i][j] = this.lab[i][j-3];
+//                    }
+//
+//                    this.numbers.remove(nb);
+//                    printMaze();
+//                    System.out.println();
+//                    System.out.println();
+//                    break;
+//                }
+//            }
+//        }
 
-        int nb = ThreadLocalRandom.current().nextInt(0, this.numbers.size());
-
-        for(int i=1; i<rows; i++){
-            for(int j=1; j<cols; j++){
-                if(this.lab[i][j].equals(this.numbers.get(nb))) {
-
-                    System.out.println("nb = " + this.numbers.get(nb));
-                    System.out.println("le = "+this.lab[i][j]);
-
-                    // Sud
-                    if (i+3<rows && this.lab[i+3][j] != this.numbers.get(nb)) {
-                        this.lab[i][j] = this.lab[i+3][j];
-                    }
-
-                    // Nord
-                    else if (i-3>0 && this.lab[i-3][j] != this.numbers.get(nb)) {
-                        this.lab[i][j] = this.lab[i-3][j];
-                    }
-
-                    // Est
-                    else if (j+3<cols && this.lab[i][j+3] != this.numbers.get(nb)) {
-                        this.lab[i][j] = this.lab[i][j+3];
-                    }
-
-                    // Ouest
-                    else if (j-3>0 && this.lab[i][j-3] != this.numbers.get(nb)) {
-                        this.lab[i][j] = this.lab[i][j-3];
-                    }
-
-                    this.numbers.remove(nb);
-                    printMaze();
-                    System.out.println();
-                    System.out.println();
-                    break;
-                }
-            }
-        }
-
+//            if((dir == "nord") && (i-3>0)){
+//                if(this.lab[i-3][j].equals(" ")){
+//                    this.lab[i-1][j] = ".";
+//                    this.lab[i-2][j] = ".";
+//                    this.lab[i-3][j] = ".";
+//                }
+//                i-=3;
+//            }
+//
+//            if((dir == "sud") && (i+3<rows)){
+//                if(this.lab[i+3][j].equals(" ")){
+//                    this.lab[i+1][j] = ".";
+//                    this.lab[i+2][j] = ".";
+//                    this.lab[i+3][j] = ".";
+//                }
+//                i+=3;
+//            }
+//
+//            if((dir == "est") && (j+3<cols)){
+//                if(this.lab[i][j+3].equals(" ")){
+//                    this.lab[i][j+1] = ".";
+//                    this.lab[i][j+2] = ".";
+//                    this.lab[i][j+3] = ".";
+//                }
+//                j+=3;
+//            }
+//
+//            if((dir == "ouest") && (j-3>0)){
+//                if(this.lab[i][j-3].equals(" ")){
+//                    this.lab[i][j-1] = ".";
+//                    this.lab[i][j-2] = ".";
+//                    this.lab[i][j-3] = ".";
+//                }
+//                j-=3;
+//            }
+//
 
         generator();
     }
@@ -133,7 +162,7 @@ public class Maze {
 
 
 
-
+    // Méthode pour afficher le labyrinthe
     public void printMaze() {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
