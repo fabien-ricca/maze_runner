@@ -33,7 +33,6 @@ public class Maze {
                 this.lab[i + 1][j + 1] = " ";
             }
         }
-
         startEndPoints();
     }
 
