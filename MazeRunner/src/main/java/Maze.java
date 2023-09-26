@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
+import java.util.Random;
 
 public class Maze {
     private int rows, cols, enter;
-    private ArrayList<String> numbers = new ArrayList<String>();
+    private Stack<int[]> stack = new Stack<>();
     public String[][] lab;
 
     public Maze(int rows, int cols) {
@@ -16,7 +18,7 @@ public class Maze {
         init();
 
 
-        generator();
+        generator(1, this.enter);
     }
 
 
@@ -62,93 +64,79 @@ public class Maze {
 
 
     // Méthode de génération de labyrinthe
-    public void generator(){
-        String dir = direction();
-//
-//        for(int i=1; i<rows; i++){
-//            for(int j=1; j<cols; j++){
-//                if(this.lab[i][j].equals(this.numbers.get(nb))) {
-//
-//                    System.out.println("nb = " + this.numbers.get(nb));
-//                    System.out.println("le = "+this.lab[i][j]);
-//
-//                    // Sud
-//                    if (i+3<rows && this.lab[i+3][j] != this.numbers.get(nb)) {
-//                        this.lab[i][j] = this.lab[i+3][j];
-//                    }
-//
-//                    // Nord
-//                    else if (i-3>0 && this.lab[i-3][j] != this.numbers.get(nb)) {
-//                        this.lab[i][j] = this.lab[i-3][j];
-//                    }
-//
-//                    // Est
-//                    else if (j+3<cols && this.lab[i][j+3] != this.numbers.get(nb)) {
-//                        this.lab[i][j] = this.lab[i][j+3];
-//                    }
-//
-//                    // Ouest
-//                    else if (j-3>0 && this.lab[i][j-3] != this.numbers.get(nb)) {
-//                        this.lab[i][j] = this.lab[i][j-3];
-//                    }
-//
-//                    this.numbers.remove(nb);
-//                    printMaze();
-//                    System.out.println();
-//                    System.out.println();
-//                    break;
-//                }
-//            }
-//        }
+    public void generator(int i, int j){
+        String dir = direction(i, j);
 
-//            if((dir == "nord") && (i-3>0)){
-//                if(this.lab[i-3][j].equals(" ")){
-//                    this.lab[i-1][j] = ".";
-//                    this.lab[i-2][j] = ".";
-//                    this.lab[i-3][j] = ".";
-//                }
-//                i-=3;
-//            }
-//
-//            if((dir == "sud") && (i+3<rows)){
-//                if(this.lab[i+3][j].equals(" ")){
-//                    this.lab[i+1][j] = ".";
-//                    this.lab[i+2][j] = ".";
-//                    this.lab[i+3][j] = ".";
-//                }
-//                i+=3;
-//            }
-//
-//            if((dir == "est") && (j+3<cols)){
-//                if(this.lab[i][j+3].equals(" ")){
-//                    this.lab[i][j+1] = ".";
-//                    this.lab[i][j+2] = ".";
-//                    this.lab[i][j+3] = ".";
-//                }
-//                j+=3;
-//            }
-//
-//            if((dir == "ouest") && (j-3>0)){
-//                if(this.lab[i][j-3].equals(" ")){
-//                    this.lab[i][j-1] = ".";
-//                    this.lab[i][j-2] = ".";
-//                    this.lab[i][j-3] = ".";
-//                }
-//                j-=3;
-//            }
-//
+            if((dir == "nord") && (i-3>0)){
+                if(this.lab[i-3][j].equals(" ")){
+                    this.lab[i-1][j] = ".";
+                    this.lab[i-2][j] = ".";
+                    this.lab[i-3][j] = ".";
+                }
+                i-=3;
+            }
 
-        generator();
+            else if((dir == "sud") && (i+3<rows)){
+                if(this.lab[i+3][j].equals(" ")){
+                    this.lab[i+1][j] = ".";
+                    this.lab[i+2][j] = ".";
+                    this.lab[i+3][j] = ".";
+                }
+                i+=3;
+            }
+
+            else if((dir == "est") && (j+3<cols)){
+                if(this.lab[i][j+3].equals(" ")){
+                    this.lab[i][j+1] = ".";
+                    this.lab[i][j+2] = ".";
+                    this.lab[i][j+3] = ".";
+                }
+                j+=3;
+            }
+
+            else if((dir == "ouest") && (j-3>0)){
+                if(this.lab[i][j-3].equals(" ")){
+                    this.lab[i][j-1] = ".";
+                    this.lab[i][j-2] = ".";
+                    this.lab[i][j-3] = ".";
+                }
+                j-=3;
+            }
+
+            else{
+                int[] newPos = this.stack.pop();
+                i = newPos[0];
+                j = newPos[1];
+            }
+
+            int[] pos = {i, j};
+        this.stack.push(pos);
+
+
+        generator(i, j);
     }
 
 
 
     // Méthode pour choisir une direction au hasard
-    public String direction(){
-        String[] dir = {"nord", "sud", "est", "ouest"};
-        int i = ThreadLocalRandom.current().nextInt(0, 3);
+    public String direction(int i, int j){
+        ArrayList<String> dir = new ArrayList<>();
 
-        return dir[i];
+        if(this.lab[i-3][j].equals(" ")){ dir.add("nord");}
+        if(this.lab[i+3][j].equals(" ")){ dir.add("sud");}
+        if(this.lab[i][j-3].equals(" ")){ dir.add("ouest");}
+        if(this.lab[i][j+3].equals(" ")){ dir.add("est");}
+
+
+//        String[] dir = {"nord", "sud", "est", "ouest"};
+        if(dir.size() > 0){
+            Random random = new Random();
+            int x = random.nextInt(dir.size());
+
+            return dir.get(x);
+        }
+
+        return null;
     }
 
 
