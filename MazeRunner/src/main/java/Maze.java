@@ -5,9 +5,9 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
 
 public class Maze {
-    protected int rows, cols, enter;
-    protected Stack<int[]> stack = new Stack<>();
-    protected String[][] lab;
+    private int rows, cols, enter;
+    private Stack<int[]> stack = new Stack<>();
+    private String[][] lab;
 
     public Maze(int rows, int cols) {
         this.rows = rows * 3;
