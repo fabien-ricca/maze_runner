@@ -2,7 +2,6 @@ import java.util.Random;
 
 public class SimpleImperfectMazeGenerator implements MazeGenerator{
     private Maze maze;
-    private boolean isMazefinished = false;
 
 
     public SimpleImperfectMazeGenerator(int rows, int cols){

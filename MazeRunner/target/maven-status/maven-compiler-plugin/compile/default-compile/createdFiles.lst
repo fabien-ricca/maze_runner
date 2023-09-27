@@ -1,2 +1,5 @@
 Main.class
+MazeGenerator.class
+SimpleImperfectMazeGenerator.class
+SimplePerfectMazeGenerator.class
 Maze.class
