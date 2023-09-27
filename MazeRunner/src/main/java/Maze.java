@@ -17,6 +17,7 @@ public class Maze {
     }
 
 
+
     public void init(){
         // On rempli le labyrinthe de murs
         for (int i = 0; i < this.rows; i++) {
@@ -60,61 +61,6 @@ public class Maze {
 
 
 
-    // Méthode de génération de labyrinthe
-//    public void generator(int i, int j){
-//        String dir = direction(" ", i, j);
-//
-//        switch(dir){
-//            case "nord":
-//                this.lab[i-1][j] = "•";
-//                this.lab[i-2][j] = "•";
-//                this.lab[i-3][j] = "•";
-//                i-=3;
-//                break;
-//
-//            case "sud":
-//                this.lab[i+1][j] = "•";
-//                this.lab[i+2][j] = "•";
-//                this.lab[i+3][j] = "•";
-//                i+=3;
-//                break;
-//
-//            case "est":
-//                this.lab[i][j+1] = "•";
-//                this.lab[i][j+2] = "•";
-//                this.lab[i][j+3] = "•";
-//                j+=3;
-//                break;
-//
-//            case "ouest":
-//                this.lab[i][j-1] = "•";
-//                this.lab[i][j-2] = "•";
-//                this.lab[i][j-3] = "•";
-//                j-=3;
-//                break;
-//
-//            case "none":
-//                stack.pop();
-//                int[] newPos = this.stack.pop();
-//                i = newPos[0];
-//                j = newPos[1];
-//                break;
-//        }
-//
-//        int[] pos = {i, j};
-//        this.stack.push(pos);
-//
-////        System.out.println();
-////        System.out.println();
-////        printMaze();
-//
-//        if(!isValidMaze()){
-//            generator(i, j);
-//        }
-//    }
-
-
-
     // Méthode pour choisir une direction au hasard
     public String direction(String target, int i, int j){
         ArrayList<String> dir = new ArrayList<>();
@@ -142,7 +88,7 @@ public class Maze {
 
 
 
-    // Méthode pour vérifier si le labyrinthe est ok
+    // Méthode pour vérifier si le labyrinthe contient encore des zones vides
     public boolean isValidMaze(){
         return Arrays.stream(this.lab)
                 .flatMap(Arrays::stream)
