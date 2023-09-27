@@ -61,6 +61,7 @@ public class Main {
 
                         case "graph":
                             GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
+                            graphPerfect.setDifficult(true);
                             graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
                             break;
                     }
@@ -73,7 +74,9 @@ public class Main {
                             break;
 
                         case "graph":
-
+                            GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
+                            graphPerfect.setDifficult(false);
+                            graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
                             break;
                     }
                     break;

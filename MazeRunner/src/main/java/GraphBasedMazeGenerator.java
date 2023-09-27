@@ -3,11 +3,14 @@ import java.util.Random;
 import java.util.Stack;
 
 public class GraphBasedMazeGenerator implements MazeGenerator{
+
+    private boolean difficult;
     private boolean murNord = false;
     private boolean murSud = false;
     private boolean murEst = false;
     private boolean murOuest = false;
     private boolean center = false;
+    private int enter;
     private Stack<int[]> stack = new Stack<>();
     private GraphBasedMazeGenerator[][] maze;
 
@@ -20,14 +23,159 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
                 maze[i][j] = new GraphBasedMazeGenerator();
             }
         }
+
+
         startEndPoints();
+        generator(0, enter);
+
+        if(!difficult){
+            breakPerfection();
+        }
+
         printMaze();
     }
 
 
     public void generator(int i, int j) {
 
+        while(!isValidMaze()){
+            String dir = direction(false, i, j);
 
+            switch(dir){
+                case "nord":
+                    maze[i][j].setMurNord(true);
+                    maze[i-1][j].setMurSud(true);
+                    maze[i-1][j].setCenter(true);
+                    i-=1;
+                    break;
+
+                case "sud":
+                    maze[i][j].setMurSud(true);
+                    maze[i+1][j].setMurNord(true);
+                    maze[i+1][j].setCenter(true);
+                    i+=1;
+                    break;
+
+                case "est":
+                    maze[i][j].setMurEst(true);
+                    maze[i][j+1].setMurOuest(true);
+                    maze[i][j+1].setCenter(true);
+                    j+=1;
+                    break;
+
+                case "ouest":
+                    maze[i][j].setMurOuest(true);
+                    maze[i][j-1].setMurEst(true);
+                    maze[i][j-1].setCenter(true);
+                    j-=1;
+                    break;
+
+                case "none":
+                    stack.pop();
+                    int[] newPos = stack.pop();
+                    i = newPos[0];
+                    j = newPos[1];
+                    break;
+            }
+
+            int[] pos = {i, j};
+            stack.push(pos);
+        }
+
+    }
+
+
+
+    // Méthode pour rendre le labyrinthe imparfait
+    public void breakPerfection(){
+        Random random = new Random();
+
+        int count = 0;
+        while(count <= maze.length / 2){
+            int x = random.nextInt(0, maze.length);
+            int y = random.nextInt(0, maze[0].length);
+
+            String dir = direction(true, x, y);
+
+
+            switch (dir) {
+                case "nord":
+                    if (!maze[x - 1][y].isMurSud()) {
+                        maze[x - 1][y].setMurSud(true);
+                        maze[x][y].setMurNord(true);
+                        count++;
+                    }
+                    break;
+
+                case "sud":
+                    if (!maze[x + 1][y].isMurNord()) {
+                        maze[x + 1][y].setMurNord(true);
+                        maze[x][y].setMurSud(true);
+                        count++;
+                    }
+                    break;
+
+                case "est":
+                    if (!maze[x][y + 1].isMurOuest()) {
+                        maze[x][y + 1].setMurOuest(true);
+                        maze[x][y].setMurEst(true);
+                        count++;
+                    }
+                    break;
+
+                case "ouest":
+                    if (!maze[x][y - 1].isMurEst()) {
+                        maze[x][y - 1].setMurEst(true);
+                        maze[x][y].setMurOuest(true);
+                        count++;
+                    }
+                    break;
+            }
+        }
+
+//        for (int i = 0; i < maze.length; i++) {
+//
+//
+//            int x = random.nextInt(0, maze.length);
+//            int y = random.nextInt(0, maze[0].length);
+//
+//            String dir = direction(true, x, y);
+//
+//
+//            switch (dir) {
+//                case "nord":
+//                    if (!maze[x - 1][y].isMurSud()) {
+//                        maze[x - 1][y].setMurSud(true);
+//                        maze[x][y].setMurNord(true);
+//                        x -= 3;
+//                    }
+//                    break;
+//
+//                case "sud":
+//                    if (!maze[x + 1][y].isMurNord()) {
+//                        maze[x + 1][y].setMurNord(true);
+//                        maze[x][y].setMurSud(true);
+//                        x += 3;
+//                    }
+//                    break;
+//
+//                case "est":
+//                    if (!maze[x][y + 1].isMurOuest()) {
+//                        maze[x][y + 1].setMurOuest(true);
+//                        maze[x][y].setMurEst(true);
+//                        y += 3;
+//                    }
+//                    break;
+//
+//                case "ouest":
+//                    if (!maze[x][y - 1].isMurEst()) {
+//                        maze[x][y - 1].setMurEst(true);
+//                        maze[x][y].setMurOuest(true);
+//                        y -= 3;
+//                    }
+//                    break;
+//            }
+//        }
     }
 
 
@@ -40,9 +188,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
         int ent = random.nextInt(maze[0].length);
         maze[0][ent].setMurNord(true);
         maze[0][ent].setCenter(true);
+        enter = ent;
 
         int exi = random.nextInt(maze[0].length);
-        maze[maze.length-1][exi].setCenter(true);
         maze[maze.length-1][exi].setMurSud(true);
     }
 
@@ -53,9 +201,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
         ArrayList<String> dir = new ArrayList<>();
 
-        if((i-1>0) && maze[i-1][j].isCenter() == center){ dir.add("nord");}
+        if((i-1>=0) && maze[i-1][j].isCenter() == center){ dir.add("nord");}
         if((i+1< maze.length) && maze[i+1][j].isCenter() == center){ dir.add("sud");}
-        if((j-1>0) && maze[i][j-1].isCenter() == center){ dir.add("ouest");}
+        if((j-1>=0) && maze[i][j-1].isCenter() == center){ dir.add("ouest");}
         if((j+1<maze[0].length) && maze[i][j+1].isCenter() == center){ dir.add("est");}
 
 
@@ -172,5 +320,13 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
     public void setCenter(boolean center) {
         this.center = center;
+    }
+
+    public void setStack(Stack<int[]> stack) {
+        this.stack = stack;
+    }
+
+    public void setDifficult(boolean difficult) {
+        this.difficult = difficult;
     }
 }
