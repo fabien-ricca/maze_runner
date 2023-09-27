@@ -132,50 +132,6 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
                     break;
             }
         }
-
-//        for (int i = 0; i < maze.length; i++) {
-//
-//
-//            int x = random.nextInt(0, maze.length);
-//            int y = random.nextInt(0, maze[0].length);
-//
-//            String dir = direction(true, x, y);
-//
-//
-//            switch (dir) {
-//                case "nord":
-//                    if (!maze[x - 1][y].isMurSud()) {
-//                        maze[x - 1][y].setMurSud(true);
-//                        maze[x][y].setMurNord(true);
-//                        x -= 3;
-//                    }
-//                    break;
-//
-//                case "sud":
-//                    if (!maze[x + 1][y].isMurNord()) {
-//                        maze[x + 1][y].setMurNord(true);
-//                        maze[x][y].setMurSud(true);
-//                        x += 3;
-//                    }
-//                    break;
-//
-//                case "est":
-//                    if (!maze[x][y + 1].isMurOuest()) {
-//                        maze[x][y + 1].setMurOuest(true);
-//                        maze[x][y].setMurEst(true);
-//                        y += 3;
-//                    }
-//                    break;
-//
-//                case "ouest":
-//                    if (!maze[x][y - 1].isMurEst()) {
-//                        maze[x][y - 1].setMurEst(true);
-//                        maze[x][y].setMurOuest(true);
-//                        y -= 3;
-//                    }
-//                    break;
-//            }
-//        }
     }
 
 

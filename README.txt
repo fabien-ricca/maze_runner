@@ -1,4 +1,4 @@
-Conceptualisation d'un labyrinthe de taille de 5 cellules sur 5 cellules (chaque cellule fait 3 par 3) :
+Conceptualisation du labyrinthe Simple de taille de 5 cellules sur 5 cellules (chaque cellule fait 3 par 3) :
 
  [#][#][#] [#][#][#] [#][#][#] [#][#][#] [#][#][#]  
  [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
@@ -23,3 +23,28 @@ Conceptualisation d'un labyrinthe de taille de 5 cellules sur 5 cellules (chaque
  [#][#][#] [#][#][#] [#][#][#] [#][#][#] [#][#][#] 
  [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
  [#][#][#] [#][#][#] [#][#][#] [#][#][#] [#][#][#] 
+
+
+
+Conceptualisation du labyrinthe Graph de taille de 5 cellules sur 5 cellules :
+
+
+    [#]       [#]       [#]       [#]       [#]
+ [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
+    [#]       [#]       [#]       [#]       [#]
+ 
+    [#]       [#]       [#]       [#]       [#]
+ [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
+    [#]       [#]       [#]       [#]       [#]
+
+    [#]       [#]       [#]       [#]       [#]
+ [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
+    [#]       [#]       [#]       [#]       [#]
+
+    [#]       [#]       [#]       [#]       [#]
+ [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
+    [#]       [#]       [#]       [#]       [#]
+
+    [#]       [#]       [#]       [#]       [#]
+ [#][.][#] [#][.][#] [#][.][#] [#][.][#] [#][.][#] 
+    [#]       [#]       [#]       [#]       [#]
