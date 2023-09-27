@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Stack;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
 
 public class Maze {
@@ -15,7 +14,6 @@ public class Maze {
         this.lab = new String[this.rows][this.cols];
 
         init();
-//        generator(1, this.enter);
     }
 
 
@@ -38,7 +36,7 @@ public class Maze {
 
 
 
-    // Méthode pour créer une entrée et une sortie
+    // Méthode pour créer une entrée et une sortie aléatoire sur les murs Nord et Sud
     public String[][] startEndPoints(){
         // On crée un tableau avec les entrées potentielles
         int[] enters = new int[this.rows/3];
@@ -46,13 +44,15 @@ public class Maze {
             enters[i] = 1 + i * 3;
         }
 
+        Random random = new Random();
 
-        int ent = ThreadLocalRandom.current().nextInt(0, enters.length-1);
+        int ent = random.nextInt(enters.length);
+        this.lab[0][enters[ent]] = "•";
+        this.lab[1][enters[ent]] = "•";
         this.enter = enters[ent];
-        this.lab[0][this.enter] = "•";
-        this.lab[1][this.enter] = "•";
 
-        int exi = ThreadLocalRandom.current().nextInt(0, enters.length-1);
+
+        int exi = random.nextInt(enters.length);
         this.lab[this.lab.length-1][enters[exi]] = "•";
 
         return this.lab;
