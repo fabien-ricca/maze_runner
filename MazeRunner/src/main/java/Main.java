@@ -60,7 +60,8 @@ public class Main {
                             break;
 
                         case "graph":
-
+                            GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
+                            graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
                             break;
                     }
                     break;
