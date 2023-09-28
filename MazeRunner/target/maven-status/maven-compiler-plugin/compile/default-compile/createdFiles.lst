@@ -1,5 +1,7 @@
 Main.class
 MazeGenerator.class
+GraphBasedMazeGenerator.class
+Errors.class
+Maze.class
 SimpleImperfectMazeGenerator.class
 SimplePerfectMazeGenerator.class
-Maze.class
