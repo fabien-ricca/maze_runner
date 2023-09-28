@@ -1,5 +1,6 @@
 public interface MazeGenerator {
 
+
     /**
      * Méthode de création de labyrinthe à implémenter.
      */

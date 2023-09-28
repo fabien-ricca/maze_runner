@@ -7,7 +7,7 @@ public class SimpleImperfectMazeGenerator implements MazeGenerator{
 
     /**
      * - Constructor -<br>
-     * Créer le labyrinthe et l'affiche.
+     * Crée le labyrinthe et l'affiche.
      */
     public SimpleImperfectMazeGenerator(int rows, int cols){
         this.maze = new Maze(rows, cols);

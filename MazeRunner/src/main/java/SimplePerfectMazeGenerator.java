@@ -1,7 +1,12 @@
 public class SimplePerfectMazeGenerator implements MazeGenerator{
-    private Maze maze;
+    private Maze maze;      // Labyrinthe
 
 
+
+    /**
+     * - Constructor -<br>
+     * Crée le labyrinthe et l'affiche.
+     */
     public SimplePerfectMazeGenerator(int rows, int cols){
         this.maze = new Maze(rows, cols);
 
@@ -9,6 +14,11 @@ public class SimplePerfectMazeGenerator implements MazeGenerator{
         maze.printMaze();
     }
 
+
+
+    /**
+     * Méthode qui génère un labyrinthe parfait.
+     */
     public void generator(int i, int j){
 
         while(!maze.isValidMaze()){

@@ -4,10 +4,18 @@ import java.util.Stack;
 import java.util.Random;
 
 public class Maze {
-    private int rows, cols, enter;
-    private Stack<int[]> stack = new Stack<>();
-    private String[][] lab;
+    private int rows;       // Lignes (hauteur)
+    private int cols;       // Colonnes (largeur)
+    private int enter;      // Entrée du labyrinthe
+    private Stack<int[]> stack = new Stack<>();     // Pile de poisitions visitées viables
+    private String[][] lab;     // Labyrinthe
 
+
+
+    /**
+     * - Constructor -<br>
+     * Set les colonnes, les lignes et lance l'initialisation du labyrinthe.
+     */
     public Maze(int rows, int cols) {
         this.rows = rows * 3;
         this.cols = cols * 3;
@@ -18,6 +26,9 @@ public class Maze {
 
 
 
+    /**
+     * Initialisation d'un labyrinthe vide (uniquement de '#' et des ' ').
+     */
     public void init(){
         // On rempli le labyrinthe de murs
         for (int i = 0; i < this.rows; i++) {
@@ -37,7 +48,9 @@ public class Maze {
 
 
 
-    // Méthode pour créer une entrée et une sortie aléatoire sur les murs Nord et Sud
+    /**
+     * Méthode qui va créer une entrée au Nord et une sortie au Sud.
+     */
     public String[][] startEndPoints(){
         // On crée un tableau avec les entrées potentielles
         int[] enters = new int[this.rows/3];
@@ -61,7 +74,9 @@ public class Maze {
 
 
 
-    // Méthode pour choisir une direction au hasard
+    /**
+     *Méthode qui va établir une liste de direction possibles, puis en retourner une au hasard.
+     */
     public String direction(String target, int i, int j){
         ArrayList<String> dir = new ArrayList<>();
 
@@ -88,7 +103,9 @@ public class Maze {
 
 
 
-    // Méthode pour vérifier si le labyrinthe contient encore des zones vides
+    /**
+     * Méthode pour vérifier si le labyrinthe est terminée (s'il contient encore un ou plusieurs ' ').
+     */
     public boolean isValidMaze(){
         return Arrays.stream(this.lab)
                 .flatMap(Arrays::stream)
@@ -97,7 +114,9 @@ public class Maze {
 
 
 
-    // Méthode pour afficher le labyrinthe
+    /**
+     * Méthode pour afficher le labyrinthe.
+     */
     public void printMaze() {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.cols; j++) {
@@ -109,6 +128,9 @@ public class Maze {
 
 
 
+    /**
+     * Getters...
+     */
     public String[][] getMaze(){
         return this.lab;
     }

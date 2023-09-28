@@ -1,7 +1,13 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
 
+
+    /**
+     * Méthode qui vérifie la validité des arguments passés.
+     */
     public static String checkArgs(String[] args){
         String usage = "Utilisation : java -jar MazeRunner.jar [largeur] [hauteur] [perfect/imperfect] [simple/graph/optimized]";
 
@@ -24,6 +30,10 @@ public class Main {
     }
 
 
+
+    /**
+     * Vérifie la validité d'un nombre (arguments 0 et 1).
+     */
     public static boolean checkNumber(String n){
         try {
             int nb = Integer.parseInt(n);
@@ -38,6 +48,10 @@ public class Main {
     }
 
 
+
+    /**
+     * Vérifie la validité des oprions (arguments 2 et 3).
+     */
     public static boolean checkOption(String args){
         if(!args.equals("simple") && !args.equals("graph") && !args.equals("optimized") && !args.equals("perfect") && !args.equals("imperfect")){
             return false;
@@ -46,40 +60,51 @@ public class Main {
     }
 
 
+
+    /**
+     * ---------------------------------------------------------------------<br>
+     * ---------------- <strong><u>Point d'entrée de l'application</u></strong> ---------------<br>
+     * ---------------------------------------------------------------------<br>
+     */
     public static void main(String[] args) {
         System.out.println();
         System.out.println();
 
         if(checkArgs(args).equals("true")){
 
-            switch (args[2]){
-                case "perfect":
-                    switch (args[3]){
-                        case "simple":
-                            SimplePerfectMazeGenerator simplePerfect = new SimplePerfectMazeGenerator(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-                            break;
+            try{
+                switch (args[2]){
+                    case "perfect":
+                        switch (args[3]){
+                            case "simple":
+                                SimplePerfectMazeGenerator simplePerfect = new SimplePerfectMazeGenerator(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+                                break;
 
-                        case "graph":
-                            GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
-                            graphPerfect.setDifficult(true);
-                            graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-                            break;
-                    }
-                    break;
+                            case "graph":
+                                GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
+                                graphPerfect.setDifficult(true);
+                                graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+                                break;
+                        }
+                        break;
 
-                case "imperfect":
-                    switch (args[3]){
-                        case "simple":
-                            SimpleImperfectMazeGenerator simpleImperfect = new SimpleImperfectMazeGenerator(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-                            break;
+                    case "imperfect":
+                        switch (args[3]){
+                            case "simple":
+                                SimpleImperfectMazeGenerator simpleImperfect = new SimpleImperfectMazeGenerator(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+                                break;
 
-                        case "graph":
-                            GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
-                            graphPerfect.setDifficult(false);
-                            graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-                            break;
-                    }
-                    break;
+                            case "graph":
+                                GraphBasedMazeGenerator graphPerfect = new GraphBasedMazeGenerator();
+                                graphPerfect.setDifficult(false);
+                                graphPerfect.createMaze(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+                                break;
+                        }
+                        break;
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException | IllegalArgumentException | OutOfMemoryError e){
+                System.out.println("Erreur inattendue lors de la génération du labyrinthe. Veuillez réessayer.");
             }
 
         }
