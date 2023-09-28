@@ -3,39 +3,51 @@ import java.util.Random;
 import java.util.Stack;
 
 public class GraphBasedMazeGenerator implements MazeGenerator{
+    private boolean murNord = false;    // Mur du Nord
+    private boolean murSud = false;     // Mur du Sud
+    private boolean murEst = false;     // Mur de l'est
+    private boolean murOuest = false;   // Mur de l'ouest
+    private boolean center = false;     // Centre de la cellule
+    private boolean difficult;          // Parfait ou imparfait
+    private int enter;                  // Entrée du labyrinthe
+    private Stack<int[]> stack = new Stack<>();     // Pile de poisitions visitées viables
+    private GraphBasedMazeGenerator[][] maze;       // Labyrinthe
 
-    private boolean difficult;
-    private boolean murNord = false;
-    private boolean murSud = false;
-    private boolean murEst = false;
-    private boolean murOuest = false;
-    private boolean center = false;
-    private int enter;
-    private Stack<int[]> stack = new Stack<>();
-    private GraphBasedMazeGenerator[][] maze;
 
 
+    /**
+     * Méthode appelée dans la Main. Créer le labyrinthe et l'affiche.
+     */
     public void createMaze(int rows, int cols){
+
+        // On crée le tableau dans les bonnes dimensions.
         maze = new GraphBasedMazeGenerator[rows][cols];
 
+        // On crée le tableau de cellules
         for(int i=0; i<rows; i++){
             for(int j=0; j<cols; j++){
                 maze[i][j] = new GraphBasedMazeGenerator();
             }
         }
 
-
+        // On crée une entrée et une sortie
         startEndPoints();
+
+        // On génère le labyrinthe
         generator(0, enter);
 
-        if(!difficult){
-            breakPerfection();
-        }
+        // Si le paramètre 'imperfect' a été passé on le rend imparfait
+        if(!difficult){ breakPerfection();}
 
+        // On affiche e labyrinthe
         printMaze();
     }
 
 
+
+    /**
+     * Méthode qui génère un labyrinthe parfait.
+     */
     public void generator(int i, int j) {
 
         while(!isValidMaze()){
@@ -86,7 +98,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
 
 
-    // Méthode pour rendre le labyrinthe imparfait
+    /**
+     * Méthode qui va rendre le labyrinthe imparfait.
+     */
     public void breakPerfection(){
         Random random = new Random();
 
@@ -136,7 +150,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
 
 
-    // Méthode qui va créer une entrée et une sortie
+    /**
+     * Méthode qui va créer une entrée au Nord et une sortie au Sud.
+     */
     public void startEndPoints(){
 
         Random random = new Random();
@@ -152,7 +168,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
 
 
-    // Méthode qui va retourner une direction
+    /**
+     * Méthode qui va établir une liste de direction possibles, puis en retourner une au hasard.
+     */
     public String direction(boolean center, int i, int j){
 
         ArrayList<String> dir = new ArrayList<>();
@@ -180,7 +198,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
 
 
-    // Méthode pour vérifier si le labyrinthe est terminé
+    /**
+     * Méthode pour vérifier si le labyrinthe est terminée (si le centre de chaque cellule est true).
+     */
     public boolean isValidMaze(){
 
         for(GraphBasedMazeGenerator[] line : maze){
@@ -195,8 +215,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
     }
 
 
-
-    // Méthode pour afficher le labyrinthe
+    /**
+     * Méthode pour afficher le labyrinthe.
+     */
     public void printMaze() {
         for (int i = 0; i < maze.length; i++) {
 
@@ -238,6 +259,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
 
 
+    /**
+     * Getters et Setters...
+     */
     public boolean isMurNord() {
         return murNord;
     }
@@ -278,11 +302,8 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
         this.center = center;
     }
 
-    public void setStack(Stack<int[]> stack) {
-        this.stack = stack;
-    }
-
     public void setDifficult(boolean difficult) {
         this.difficult = difficult;
     }
+
 }

@@ -1,9 +1,14 @@
 import java.util.Random;
 
 public class SimpleImperfectMazeGenerator implements MazeGenerator{
-    private Maze maze;
+    private Maze maze;      // Labyrinthe
 
 
+
+    /**
+     * - Constructor -<br>
+     * Créer le labyrinthe et l'affiche.
+     */
     public SimpleImperfectMazeGenerator(int rows, int cols){
         this.maze = new Maze(rows, cols);
 
@@ -15,6 +20,9 @@ public class SimpleImperfectMazeGenerator implements MazeGenerator{
 
 
 
+    /**
+     * Méthode qui génère un labyrinthe parfait.
+     */
     public void generator(int i, int j){
 
         while(!maze.isValidMaze()){
@@ -64,6 +72,9 @@ public class SimpleImperfectMazeGenerator implements MazeGenerator{
 
 
 
+    /**
+     * Méthode qui va rendre le labyrinthe imparfait.
+     */
     public void breakPerfection(int rows) {
         Random random = new Random();
         String dir = "";
