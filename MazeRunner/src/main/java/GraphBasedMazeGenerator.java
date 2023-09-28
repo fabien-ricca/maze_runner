@@ -225,7 +225,7 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
             // Imprimer les murs Nord de chaque cellule sur la ligne i
             for (int j = 0; j < maze[i].length; j++) {
-                System.out.print((maze[i][j].murNord ? "•" : "#"));
+                System.out.print((maze[i][j].murNord ? "." : "#"));
                 if(j < maze[i].length-1){
                     System.out.print("##");
                 }
@@ -236,9 +236,9 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
             // Imprimer les murs Ouest, le centre et les murs Est de chaque cellule sur la ligne i
             for (int j = 0; j < maze[i].length; j++) {
-                System.out.print((maze[i][j].murOuest ? "•" : "#"));
-                System.out.print((maze[i][j].center ? "•" : "#"));
-                System.out.print((maze[i][j].murEst ? "•" : "#"));
+                System.out.print((maze[i][j].murOuest ? "." : "#"));
+                System.out.print((maze[i][j].center ? "." : "#"));
+                System.out.print((maze[i][j].murEst ? "." : "#"));
             }
 
             System.out.println();
@@ -246,7 +246,7 @@ public class GraphBasedMazeGenerator implements MazeGenerator{
 
             // Imprimer les murs Sud de chaque cellule sur la ligne i
             for (int j = 0; j < maze[i].length; j++) {
-                System.out.print((maze[i][j].murSud ? "•" : "#"));
+                System.out.print((maze[i][j].murSud ? "." : "#"));
                 if(j < maze[i].length-1){
                     System.out.print("##");
                 }

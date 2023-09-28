@@ -67,8 +67,6 @@ public class Main {
      * ---------------------------------------------------------------------<br>
      */
     public static void main(String[] args) {
-        System.out.println();
-        System.out.println();
 
         if(checkArgs(args).equals("true")){
 

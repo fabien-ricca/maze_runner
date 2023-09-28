@@ -26,30 +26,30 @@ public class SimplePerfectMazeGenerator implements MazeGenerator{
 
             switch(dir){
                 case "nord":
-                    maze.getMaze()[i-1][j] = "•";
-                    maze.getMaze()[i-2][j] = "•";
-                    maze.getMaze()[i-3][j] = "•";
+                    maze.getMaze()[i-1][j] = ".";
+                    maze.getMaze()[i-2][j] = ".";
+                    maze.getMaze()[i-3][j] = ".";
                     i-=3;
                     break;
 
                 case "sud":
-                    maze.getMaze()[i+1][j] = "•";
-                    maze.getMaze()[i+2][j] = "•";
-                    maze.getMaze()[i+3][j] = "•";
+                    maze.getMaze()[i+1][j] = ".";
+                    maze.getMaze()[i+2][j] = ".";
+                    maze.getMaze()[i+3][j] = ".";
                     i+=3;
                     break;
 
                 case "est":
-                    maze.getMaze()[i][j+1] = "•";
-                    maze.getMaze()[i][j+2] = "•";
-                    maze.getMaze()[i][j+3] = "•";
+                    maze.getMaze()[i][j+1] = ".";
+                    maze.getMaze()[i][j+2] = ".";
+                    maze.getMaze()[i][j+3] = ".";
                     j+=3;
                     break;
 
                 case "ouest":
-                    maze.getMaze()[i][j-1] = "•";
-                    maze.getMaze()[i][j-2] = "•";
-                    maze.getMaze()[i][j-3] = "•";
+                    maze.getMaze()[i][j-1] = ".";
+                    maze.getMaze()[i][j-2] = ".";
+                    maze.getMaze()[i][j-3] = ".";
                     j-=3;
                     break;
 

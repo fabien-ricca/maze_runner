@@ -61,13 +61,13 @@ public class Maze {
         Random random = new Random();
 
         int ent = random.nextInt(enters.length);
-        this.lab[0][enters[ent]] = "•";
-        this.lab[1][enters[ent]] = "•";
+        this.lab[0][enters[ent]] = ".";
+        this.lab[1][enters[ent]] = ".";
         this.enter = enters[ent];
 
 
         int exi = random.nextInt(enters.length);
-        this.lab[this.lab.length-1][enters[exi]] = "•";
+        this.lab[this.lab.length-1][enters[exi]] = ".";
 
         return this.lab;
     }

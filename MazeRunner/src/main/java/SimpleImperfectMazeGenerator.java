@@ -30,30 +30,30 @@ public class SimpleImperfectMazeGenerator implements MazeGenerator{
 
             switch(dir){
                 case "nord":
-                    maze.getMaze()[i-1][j] = "•";
-                    maze.getMaze()[i-2][j] = "•";
-                    maze.getMaze()[i-3][j] = "•";
+                    maze.getMaze()[i-1][j] = ".";
+                    maze.getMaze()[i-2][j] = ".";
+                    maze.getMaze()[i-3][j] = ".";
                     i-=3;
                     break;
 
                 case "sud":
-                    maze.getMaze()[i+1][j] = "•";
-                    maze.getMaze()[i+2][j] = "•";
-                    maze.getMaze()[i+3][j] = "•";
+                    maze.getMaze()[i+1][j] = ".";
+                    maze.getMaze()[i+2][j] = ".";
+                    maze.getMaze()[i+3][j] = ".";
                     i+=3;
                     break;
 
                 case "est":
-                    maze.getMaze()[i][j+1] = "•";
-                    maze.getMaze()[i][j+2] = "•";
-                    maze.getMaze()[i][j+3] = "•";
+                    maze.getMaze()[i][j+1] = ".";
+                    maze.getMaze()[i][j+2] = ".";
+                    maze.getMaze()[i][j+3] = ".";
                     j+=3;
                     break;
 
                 case "ouest":
-                    maze.getMaze()[i][j-1] = "•";
-                    maze.getMaze()[i][j-2] = "•";
-                    maze.getMaze()[i][j-3] = "•";
+                    maze.getMaze()[i][j-1] = ".";
+                    maze.getMaze()[i][j-2] = ".";
+                    maze.getMaze()[i][j-3] = ".";
                     j-=3;
                     break;
 
@@ -90,38 +90,38 @@ public class SimpleImperfectMazeGenerator implements MazeGenerator{
             x = enters[random.nextInt(1, enters.length)];
             y = enters[random.nextInt(1, enters.length)];
 
-            dir = this.maze.direction("•", x, y);
+            dir = this.maze.direction(".", x, y);
 
 
             switch (dir) {
                 case "nord":
                     if (maze.getMaze()[x - 1][y] == "#") {
-                        maze.getMaze()[x - 1][y] = "•";
-                        maze.getMaze()[x - 2][y] = "•";
+                        maze.getMaze()[x - 1][y] = ".";
+                        maze.getMaze()[x - 2][y] = ".";
                         x -= 3;
                     }
                     break;
 
                 case "sud":
                     if (maze.getMaze()[x + 1][y] == "#") {
-                        maze.getMaze()[x + 1][y] = "•";
-                        maze.getMaze()[x + 2][y] = "•";
+                        maze.getMaze()[x + 1][y] = ".";
+                        maze.getMaze()[x + 2][y] = ".";
                         x += 3;
                     }
                     break;
 
                 case "est":
                     if (maze.getMaze()[x][y + 1] == "#") {
-                        maze.getMaze()[x][y + 1] = "•";
-                        maze.getMaze()[x][y + 2] = "•";
+                        maze.getMaze()[x][y + 1] = ".";
+                        maze.getMaze()[x][y + 2] = ".";
                         y += 3;
                     }
                     break;
 
                 case "ouest":
                     if (maze.getMaze()[x][y - 1] == "#") {
-                        maze.getMaze()[x][y - 1] = "•";
-                        maze.getMaze()[x][y - 2] = "•";
+                        maze.getMaze()[x][y - 1] = ".";
+                        maze.getMaze()[x][y - 2] = ".";
                         y -= 3;
                     }
                     break;
