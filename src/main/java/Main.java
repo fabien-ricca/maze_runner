@@ -18,6 +18,7 @@ public class Main {
         }
         catch(ArrayIndexOutOfBoundsException | IllegalArgumentException | OutOfMemoryError e){
             System.out.println("Erreur inattendue lors de la génération du labyrinthe. Veuillez réessayer.");
+            System.out.println("Utilisation : java -jar MazeRunner.jar [largeur] [hauteur] [perfect/imperfect] [simple/graph/optimized]");
         }
     }
 

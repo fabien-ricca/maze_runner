@@ -13,7 +13,7 @@ public class Errors {
 
         // On vérifie que les 2 premiers arguments sont biens des nombres, et qu'ils sont bien superieur à 5
         if(!checkNumber(args[0]) || !checkNumber(args[1])){
-            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5.";
+            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5";
         }
 
         // On vérifie que les 2 derniers arguments sont bien valides
