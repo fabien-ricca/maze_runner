@@ -9,17 +9,17 @@ public class Errors {
 
         // On vérifie que 4 arguments ont bien étaient passés
         if(args.length != 4){
-            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides.\n" + usage;
+            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides." + usage;
         }
 
         // On vérifie que les 2 premiers arguments sont biens des nombres, et qu'ils sont bien superieur à 5
         if(!checkNumber(args[0]) || !checkNumber(args[1])){
-            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5.\n" + usage;
+            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5." + usage;
         }
 
         // On vérifie que les 2 derniers arguments sont bien valides
         if(!checkOption(args[2]) || !checkOption(args[3])){
-            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides.\n" + usage;
+            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides." + usage;
         }
 
         return "true";
