@@ -5,21 +5,20 @@ public class Errors {
      * Méthode qui vérifie la validité des arguments passés.
      */
     public static String checkArgs(String[] args){
-        String usage = "Utilisation : java -jar MazeRunner.jar [largeur] [hauteur] [perfect/imperfect] [simple/graph/optimized]";
 
         // On vérifie que 4 arguments ont bien étaient passés
         if(args.length != 4){
-            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides." + usage;
+            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides.";
         }
 
         // On vérifie que les 2 premiers arguments sont biens des nombres, et qu'ils sont bien superieur à 5
         if(!checkNumber(args[0]) || !checkNumber(args[1])){
-            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5." + usage;
+            return "Erreur : Veuillez fournir une largeur et une hauteur valides supérieurs à 5.";
         }
 
         // On vérifie que les 2 derniers arguments sont bien valides
         if(!checkOption(args[2]) || !checkOption(args[3])){
-            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides." + usage;
+            return "Erreur : Veuillez fournir un type de labyrinthe et une méthode de génération valides.";
         }
 
         return "true";

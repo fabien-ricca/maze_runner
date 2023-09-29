@@ -80,6 +80,7 @@ public class Main {
         }
         else{
             System.out.println(Errors.checkArgs(args));
+            System.out.println("Utilisation : java -jar MazeRunner.jar [largeur] [hauteur] [perfect/imperfect] [simple/graph/optimized]");
         }
     }
 }
