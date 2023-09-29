@@ -70,7 +70,7 @@ public class Main {
 
     /**
      * ---------------------------------------------------------------------<br>
-     * ------------------- <strong><u>Point d'entrée de l'application</u></strong> ------------------<br>
+     * ---------------- <strong><u>Point d'entrée de l'application</u></strong> ---------------<br>
      * ---------------------------------------------------------------------<br>
      */
     public static void main(String[] args) {
